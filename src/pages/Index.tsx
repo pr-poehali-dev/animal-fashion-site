@@ -259,6 +259,10 @@ const Index = () => {
               <h2 className="text-5xl md:text-7xl font-bold leading-tight">
                 Стиль и комфорт для ваших любимцев
               </h2>
+              <p className="text-5xl md:text-7xl font-bold leading-tight">
+                Основательница проекта:<br />
+                Симакова София 9 «Д»
+              </p>
               <p className="text-xl text-muted-foreground">
                 Эксклюзивная одежда для собак и кошек, созданная с любовью и заботой о комфорте
                 вашего питомца
