@@ -474,6 +474,112 @@ const Index = () => {
         </div>
       </section>
 
+      <section id="reviews" className="py-20 relative">
+        <div className="decorative-corner decorative-corner-tl"></div>
+        <div className="decorative-corner decorative-corner-br"></div>
+        <div className="container mx-auto px-4">
+          <h2 className="text-5xl md:text-6xl font-bold mb-12 text-center">Отзывы наших клиентов</h2>
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {[
+              {
+                name: "Анна К.",
+                pet: "Собака Джек",
+                rating: 5,
+                text: "Купили свитер 'Уют' для нашего французского бульдога. Качество превосходное! Джеку очень комфортно, материал мягкий и не вызывает аллергии. Спасибо!"
+              },
+              {
+                name: "Михаил Р.",
+                pet: "Кот Барсик",
+                rating: 5,
+                text: "Худи 'Модник' просто восхитительное! Кот сначала сопротивлялся, но потом понял, как в нём тепло и уютно. Теперь сам просит надеть. Рекомендую всем!"
+              },
+              {
+                name: "Елена В.",
+                pet: "Собака Луна",
+                rating: 5,
+                text: "Заказывали дождевик для прогулок. Отличная вещь! Не промокает, легко стирается. Луна выглядит модно даже в дождливую погоду 😊"
+              },
+              {
+                name: "Дмитрий С.",
+                pet: "Корги Марта",
+                rating: 5,
+                text: "Носочки 'Лапка' - это находка! Лапки остаются чистыми после прогулки, а дома пол не царапается. И выглядят очень мило!"
+              },
+              {
+                name: "Ольга П.",
+                pet: "Собака Рокки",
+                rating: 5,
+                text: "Костюм супергероя на Новый год - лучшая покупка! Рокки был звездой вечеринки. Качество на высоте, все детали проработаны."
+              },
+              {
+                name: "Сергей Л.",
+                pet: "Кот Мурзик",
+                rating: 5,
+                text: "Шапочка 'Ушки' согревает в холода и не спадает! Мурзик теперь выходит на балкон даже зимой. Очень довольны покупкой."
+              },
+              {
+                name: "Мария К.",
+                pet: "Йорк Тиффани",
+                rating: 5,
+                text: "Заказываю в 'Животном ритме' уже третий раз! Всегда отличное качество, быстрая доставка и очень красивые вещи. Тиффани выглядит как модель!"
+              },
+              {
+                name: "Александр Н.",
+                pet: "Хаски Зевс",
+                rating: 5,
+                text: "Не думал, что хаски нужна одежда, но дождевик оказался очень полезным! Теперь после прогулки не нужно час сушить шерсть."
+              },
+              {
+                name: "Виктория Д.",
+                pet: "Чихуахуа Бэлла",
+                rating: 5,
+                text: "Бэлла мёрзнет даже летом, поэтому у нас целая коллекция от 'Животного ритма'! Каждая вещь - произведение искусства. Спасибо за заботу о наших малышах!"
+              },
+              {
+                name: "Игорь Т.",
+                pet: "Спаниель Боня",
+                rating: 5,
+                text: "Свитер с оленями купили на зиму - Боня в восторге! Тёплый, стильный, не сковывает движения. Соседи спрашивают, где купили."
+              },
+              {
+                name: "Наталья Б.",
+                pet: "Мопс Персик",
+                rating: 5,
+                text: "У Персика теперь своя гардеробная благодаря вам! Особенно нравится жилетка - удобная и яркая. Качество всегда на высоте!"
+              },
+              {
+                name: "Артём Ж.",
+                pet: "Такса Оскар",
+                rating: 5,
+                text: "Заказывали комбинезон по размеру для таксы - сели идеально! Консультанты помогли с выбором размера. Оскар доволен, и мы тоже!"
+              }
+            ].map((review, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="flex">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Icon key={i} name="Star" size={20} className="text-yellow-500 fill-yellow-500" />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-lg mb-4 leading-relaxed">{review.text}</p>
+                  <div className="flex items-center gap-3 pt-3 border-t">
+                    <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                      <Icon name="User" size={24} className="text-primary" />
+                    </div>
+                    <div>
+                      <p className="font-bold">{review.name}</p>
+                      <p className="text-sm text-muted-foreground">🐾 {review.pet}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="gallery" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <h2 className="text-5xl md:text-6xl font-bold mb-12 text-center">Фото и видео</h2>
