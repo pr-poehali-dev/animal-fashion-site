@@ -253,16 +253,16 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
+              <p className="text-lg font-medium">
+                Основательница проекта:<br />
+                Симакова София 9 «Д»
+              </p>
               <Badge className="text-lg px-4 py-2 bg-accent text-accent-foreground">
                 🎉 Новая коллекция осень 2025
               </Badge>
               <h2 className="text-5xl md:text-7xl font-bold leading-tight">
                 Стиль и комфорт для ваших любимцев
               </h2>
-              <p className="text-5xl md:text-7xl font-bold leading-tight">
-                Основательница проекта:<br />
-                Симакова София 9 «Д»
-              </p>
               <p className="text-xl text-muted-foreground">
                 Эксклюзивная одежда для собак и кошек, созданная с любовью и заботой о комфорте
                 вашего питомца
