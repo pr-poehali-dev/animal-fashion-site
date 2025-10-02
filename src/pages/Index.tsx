@@ -80,7 +80,7 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <Badge className="text-lg px-4 py-2 bg-accent text-accent-foreground">
-                🎉 Новая коллекция осень 2024
+                🎉 Новая коллекция осень 2025
               </Badge>
               <h2 className="text-5xl md:text-7xl font-bold leading-tight">
                 Стиль и комфорт для ваших любимцев
@@ -303,7 +303,7 @@ const Index = () => {
               <h4 className="text-xl font-bold mb-4">Контакты</h4>
               <div className="space-y-2 opacity-90">
                 <p>📧 info@animalrhythm.ru</p>
-                <p>📱 +7 (495) 123-45-67</p>
+                <p>📱 +1(234)567-89-00</p>
                 <p>⏰ Пн-Вс: 10:00 - 20:00</p>
               </div>
             </div>
