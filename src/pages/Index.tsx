@@ -368,6 +368,9 @@ const Index = () => {
               индивидуальность вашего любимца и защитит его в любую погоду. Мы используем только
               натуральные гипоаллергенные материалы и тщательно продумываем каждую деталь.
             </p>
+            <p className="text-xl leading-relaxed font-semibold">
+              Мы работаем как онлайн, так и оффлайн — это сделано для удобства человека и его друга.
+            </p>
             
             <Card className="mt-8 bg-gradient-to-br from-accent/20 to-secondary/20">
               <CardContent className="p-8">
