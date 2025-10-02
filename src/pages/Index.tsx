@@ -377,6 +377,9 @@ const Index = () => {
               <h4 className="text-xl font-bold mb-4">Мы в соцсетях</h4>
               <div className="flex gap-4 justify-center md:justify-start">
                 <Button size="icon" variant="secondary">
+                  <Icon name="Instagram" size={24} />
+                </Button>
+                <Button size="icon" variant="secondary">
                   <Icon name="Send" size={24} />
                 </Button>
                 <Button size="icon" variant="secondary">
