@@ -389,7 +389,7 @@ const Index = () => {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-primary-foreground/20 text-center opacity-75">
-            <p>© 2024 Животный ритм. Все права защищены.</p>
+            <p>© 2025 Животный ритм. Все права защищены.</p>
           </div>
         </div>
       </footer>
