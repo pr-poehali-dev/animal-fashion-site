@@ -379,7 +379,7 @@ const Index = () => {
               <CardContent className="p-8">
                 <div className="space-y-6">
                   <img 
-                    src="/img/ea1b0f61-dcef-44f4-8da2-1171f107f367.jpg" 
+                    src="/img/9cab4249-c36f-47c1-9787-418d0e772d96.jpg" 
                     alt="Магазин Животный ритм"
                     className="w-full rounded-xl shadow-lg"
                   />
