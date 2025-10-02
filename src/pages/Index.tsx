@@ -478,23 +478,49 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-5xl md:text-6xl font-bold mb-12 text-center">Фото и видео</h2>
           <div className="grid md:grid-cols-3 gap-4 max-w-6xl mx-auto">
-            {products.map((product) => (
+            {[
+              { type: 'video', src: products[0].image, id: 1 },
+              { type: 'image', src: '/img/2df76975-c555-4e00-b343-07d70c6146c2.jpg', id: 7 },
+              { type: 'video', src: products[1].image, id: 2 },
+              { type: 'image', src: '/img/721b4dc5-6ad0-4591-b68d-2d8510579f6f.jpg', id: 8 },
+              { type: 'video', src: products[2].image, id: 3 },
+              { type: 'image', src: '/img/9ff58845-8c05-4761-bc50-0f57634fc252.jpg', id: 9 },
+              { type: 'image', src: products[3].image, id: 4 },
+              { type: 'image', src: products[4].image, id: 5 },
+              { type: 'image', src: products[5].image, id: 6 }
+            ].map((item) => (
               <div
-                key={product.id}
-                className="aspect-square overflow-hidden rounded-2xl relative group cursor-pointer"
+                key={item.id}
+                className="aspect-square overflow-hidden rounded-2xl relative group"
               >
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-center justify-center">
-                  <Icon
-                    name="Play"
-                    size={48}
-                    className="text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                {item.type === 'video' ? (
+                  <video
+                    src={item.src}
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    onLoadedMetadata={(e) => {
+                      const video = e.currentTarget;
+                      setTimeout(() => {
+                        video.pause();
+                        video.currentTime = 0;
+                      }, 5000);
+                    }}
                   />
-                </div>
+                ) : (
+                  <img
+                    src={item.src}
+                    alt="Gallery"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
+                )}
+                {item.type === 'video' && (
+                  <div className="absolute top-4 right-4 bg-black/60 px-3 py-1 rounded-full text-white text-sm">
+                    5 сек
+                  </div>
+                )}
               </div>
             ))}
           </div>
