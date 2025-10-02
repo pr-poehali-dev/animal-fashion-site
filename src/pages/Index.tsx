@@ -207,6 +207,49 @@ const Index = () => {
               индивидуальность вашего любимца и защитит его в любую погоду. Мы используем только
               натуральные гипоаллергенные материалы и тщательно продумываем каждую деталь.
             </p>
+            
+            <Card className="mt-8 bg-gradient-to-br from-accent/20 to-secondary/20">
+              <CardContent className="p-8">
+                <div className="flex items-start gap-4">
+                  <Icon name="Store" size={48} className="text-primary flex-shrink-0" />
+                  <div className="text-left">
+                    <h3 className="text-3xl font-bold mb-4">Наш шоурум в Москве</h3>
+                    <p className="text-xl mb-3">
+                      <strong>📍 Москва, ул. Пырьева, 2</strong>
+                    </p>
+                    <p className="text-lg text-muted-foreground mb-4">
+                      Удобная транспортная доступность от станций метро:
+                    </p>
+                    <div className="grid md:grid-cols-3 gap-4 mb-6">
+                      <div className="flex items-center gap-2">
+                        <Icon name="Train" size={20} className="text-primary" />
+                        <span>Поклонная — 16-20 мин</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Icon name="Train" size={20} className="text-primary" />
+                        <span>Минская — 21-30 мин</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Icon name="Train" size={20} className="text-primary" />
+                        <span>Ломоносовский пр-т — 21-30 мин</span>
+                      </div>
+                    </div>
+                    <div className="space-y-3 text-lg">
+                      <p>
+                        <strong>Экстерьер:</strong> Уютное здание с витриной в теплых бежевых тонах и винтажными элементами декора. 
+                        Большие окна позволяют увидеть коллекцию ещё с улицы, а вывеска с логотипом в виде лапки сразу привлекает внимание.
+                      </p>
+                      <p>
+                        <strong>Интерьер:</strong> Тёплая домашняя атмосфера с деревянными стеллажами, мягким освещением и удобными зонами 
+                        для примерки. Есть игровая зона для питомцев, чтобы они чувствовали себя комфортно во время подбора одежды. 
+                        Стены украшены фотографиями счастливых клиентов — наших пушистых моделей!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             <div className="grid md:grid-cols-3 gap-8 pt-12">
               <div className="text-center">
                 <div className="text-4xl mb-4">🏆</div>
