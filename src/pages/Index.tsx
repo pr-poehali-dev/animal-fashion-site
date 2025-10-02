@@ -259,7 +259,7 @@ const Index = () => {
                 <Button size="lg" className="text-lg" onClick={() => scrollToSection("catalog")}>
                   Смотреть каталог
                 </Button>
-                <Button size="lg" variant="outline" className="text-lg">
+                <Button size="lg" variant="outline" className="text-lg" onClick={() => scrollToSection("about")}>
                   О нас
                 </Button>
               </div>
