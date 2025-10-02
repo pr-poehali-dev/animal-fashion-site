@@ -253,7 +253,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <p className="text-lg font-bold">
+              <p className="text-lg font-bold" style={{ fontFamily: '"Caveat", cursive' }}>
                 Основательница проекта:<br />
                 Симакова София 9 «Д»
               </p>
