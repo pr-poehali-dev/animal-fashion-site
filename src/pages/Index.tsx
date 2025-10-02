@@ -278,6 +278,11 @@ const Index = () => {
                 alt="Животный ритм"
                 className="w-full rounded-3xl shadow-2xl"
               />
+              <div className="absolute bottom-8 left-0 right-0 text-center">
+                <p className="text-2xl md:text-3xl text-white drop-shadow-lg px-4" style={{ fontFamily: 'Pacifico, cursive' }}>
+                  Основательница бренда - Симакова София
+                </p>
+              </div>
             </div>
           </div>
         </div>
