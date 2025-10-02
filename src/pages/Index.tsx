@@ -481,7 +481,7 @@ const Index = () => {
               <CardContent className="p-8 text-center">
                 <h3 className="text-3xl font-bold mb-4">Скидка 20%</h3>
                 <p className="text-xl mb-6">На всю коллекцию свитеров при покупке от 2-х штук</p>
-                <Button size="lg" variant="secondary">
+                <Button size="lg" variant="secondary" onClick={() => scrollToSection("catalog")}>
                   Выбрать свитера
                 </Button>
               </CardContent>
@@ -490,7 +490,7 @@ const Index = () => {
               <CardContent className="p-8 text-center">
                 <h3 className="text-3xl font-bold mb-4">Бесплатная доставка</h3>
                 <p className="text-xl mb-6">При заказе от 3000 ₽ по всей России</p>
-                <Button size="lg" variant="secondary">
+                <Button size="lg" variant="secondary" onClick={() => scrollToSection("catalog")}>
                   В каталог
                 </Button>
               </CardContent>
