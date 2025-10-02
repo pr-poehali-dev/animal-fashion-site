@@ -27,6 +27,7 @@ const Index = () => {
     2: {like: 20, heart: 15, fire: 9},
     3: {like: 18, heart: 12, fire: 6}
   });
+  const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
 
   const products = [
     {
@@ -618,13 +619,17 @@ const Index = () => {
             ].map((item) => (
               <div
                 key={item.id}
-                className="aspect-square overflow-hidden rounded-2xl relative group"
+                className="aspect-square overflow-hidden rounded-2xl relative group cursor-pointer"
+                onClick={() => setFullscreenImage(item.src)}
               >
                 <img
                   src={item.src}
                   alt="Gallery"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                  <Icon name="Maximize2" size={48} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
               </div>
             ))}
           </div>
@@ -666,6 +671,25 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      {fullscreenImage && (
+        <div 
+          className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 cursor-pointer"
+          onClick={() => setFullscreenImage(null)}
+        >
+          <button 
+            className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors"
+            onClick={() => setFullscreenImage(null)}
+          >
+            <Icon name="X" size={40} />
+          </button>
+          <img 
+            src={fullscreenImage} 
+            alt="Fullscreen view" 
+            className="max-w-full max-h-full object-contain rounded-lg"
+          />
+        </div>
+      )}
 
       <Sheet open={!!selectedProduct} onOpenChange={(open) => !open && setSelectedProduct(null)}>
         <SheetContent className="w-full sm:max-w-2xl overflow-y-auto">
