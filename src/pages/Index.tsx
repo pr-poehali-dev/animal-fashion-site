@@ -2,10 +2,23 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Icon from "@/components/ui/icon";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
+import { toast } from "sonner";
+
+interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  quantity: number;
+  discount?: number;
+}
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("home");
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const products = [
     {
@@ -62,6 +75,50 @@ const Index = () => {
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const addToCart = (product: typeof products[0]) => {
+    const existingItem = cart.find(item => item.id === product.id);
+    
+    if (existingItem) {
+      setCart(cart.map(item => 
+        item.id === product.id 
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      ));
+      toast.success(`Добавлено ещё одно ${product.name}`);
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
+      toast.success(`${product.name} добавлен в корзину`);
+    }
+  };
+
+  const removeFromCart = (productId: number) => {
+    setCart(cart.filter(item => item.id !== productId));
+    toast.info('Товар удалён из корзины');
+  };
+
+  const updateQuantity = (productId: number, newQuantity: number) => {
+    if (newQuantity === 0) {
+      removeFromCart(productId);
+      return;
+    }
+    setCart(cart.map(item => 
+      item.id === productId 
+        ? { ...item, quantity: newQuantity }
+        : item
+    ));
+  };
+
+  const getCartTotal = () => {
+    return cart.reduce((total, item) => {
+      const itemPrice = item.discount 
+        ? item.price - (item.price * item.discount / 100)
+        : item.price;
+      return total + (itemPrice * item.quantity);
+    }, 0);
+  };
+
+  const cartItemsCount = cart.reduce((total, item) => total + item.quantity, 0);
+
   return (
     <div className="min-h-screen">
       <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
@@ -88,10 +145,96 @@ const Index = () => {
                 </button>
               ))}
             </div>
-            <Button className="hidden md:flex">
-              <Icon name="ShoppingCart" size={20} className="mr-2" />
-              Корзина
-            </Button>
+            <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
+              <SheetTrigger asChild>
+                <Button className="hidden md:flex relative">
+                  <Icon name="ShoppingCart" size={20} className="mr-2" />
+                  Корзина
+                  {cartItemsCount > 0 && (
+                    <Badge className="absolute -top-2 -right-2 h-6 w-6 rounded-full p-0 flex items-center justify-center bg-destructive">
+                      {cartItemsCount}
+                    </Badge>
+                  )}
+                </Button>
+              </SheetTrigger>
+              <SheetContent className="w-full sm:max-w-lg">
+                <SheetHeader>
+                  <SheetTitle className="text-3xl font-bold">Корзина</SheetTitle>
+                </SheetHeader>
+                <div className="mt-8 space-y-4">
+                  {cart.length === 0 ? (
+                    <div className="text-center py-12">
+                      <Icon name="ShoppingCart" size={64} className="mx-auto text-muted-foreground mb-4" />
+                      <p className="text-xl text-muted-foreground">Корзина пуста</p>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="space-y-4 max-h-[60vh] overflow-y-auto">
+                        {cart.map((item) => {
+                          const finalPrice = item.discount 
+                            ? item.price - (item.price * item.discount / 100)
+                            : item.price;
+                          
+                          return (
+                            <Card key={item.id}>
+                              <CardContent className="p-4">
+                                <div className="flex gap-4">
+                                  <img 
+                                    src={item.image} 
+                                    alt={item.name}
+                                    className="w-20 h-20 object-cover rounded-lg"
+                                  />
+                                  <div className="flex-1">
+                                    <h4 className="font-bold">{item.name}</h4>
+                                    <p className="text-sm text-muted-foreground">
+                                      {finalPrice} ₽
+                                    </p>
+                                    <div className="flex items-center gap-2 mt-2">
+                                      <Button 
+                                        size="sm" 
+                                        variant="outline"
+                                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                      >
+                                        <Icon name="Minus" size={16} />
+                                      </Button>
+                                      <span className="w-8 text-center">{item.quantity}</span>
+                                      <Button 
+                                        size="sm" 
+                                        variant="outline"
+                                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                      >
+                                        <Icon name="Plus" size={16} />
+                                      </Button>
+                                      <Button 
+                                        size="sm" 
+                                        variant="ghost"
+                                        onClick={() => removeFromCart(item.id)}
+                                        className="ml-auto"
+                                      >
+                                        <Icon name="Trash2" size={16} />
+                                      </Button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </CardContent>
+                            </Card>
+                          );
+                        })}
+                      </div>
+                      <div className="border-t pt-4 space-y-4">
+                        <div className="flex justify-between text-xl font-bold">
+                          <span>Итого:</span>
+                          <span>{getCartTotal()} ₽</span>
+                        </div>
+                        <Button className="w-full" size="lg">
+                          Оформить заказ
+                        </Button>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </nav>
@@ -179,7 +322,7 @@ const Index = () => {
                           <span className="text-2xl font-bold text-primary">{product.price} ₽</span>
                         )}
                       </div>
-                      <Button>
+                      <Button onClick={() => addToCart(product)}>
                         <Icon name="ShoppingCart" size={20} />
                       </Button>
                     </div>
