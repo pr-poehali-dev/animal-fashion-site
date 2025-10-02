@@ -371,10 +371,16 @@ const Index = () => {
             
             <Card className="mt-8 bg-gradient-to-br from-accent/20 to-secondary/20">
               <CardContent className="p-8">
-                <div className="flex items-start gap-4">
-                  <Icon name="Store" size={48} className="text-primary flex-shrink-0" />
-                  <div className="text-left">
-                    <h3 className="text-3xl font-bold mb-4">Наш шоурум в Москве</h3>
+                <div className="space-y-6">
+                  <img 
+                    src="/img/ea1b0f61-dcef-44f4-8da2-1171f107f367.jpg" 
+                    alt="Магазин Животный ритм"
+                    className="w-full rounded-xl shadow-lg"
+                  />
+                  <div className="flex items-start gap-4">
+                    <Icon name="Store" size={48} className="text-primary flex-shrink-0" />
+                    <div className="text-left">
+                      <h3 className="text-3xl font-bold mb-4">Наш шоурум в Москве</h3>
                     <p className="text-xl mb-3">
                       <strong>📍 Москва, ул. Пырьева, 2</strong>
                     </p>
@@ -406,6 +412,7 @@ const Index = () => {
                         Стены украшены фотографиями счастливых клиентов — наших пушистых моделей!
                       </p>
                     </div>
+                  </div>
                   </div>
                 </div>
               </CardContent>
