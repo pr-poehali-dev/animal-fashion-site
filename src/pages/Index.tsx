@@ -13,12 +13,14 @@ interface CartItem {
   image: string;
   quantity: number;
   discount?: number;
+  description?: string;
 }
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null);
 
   const products = [
     {
@@ -27,14 +29,16 @@ const Index = () => {
       price: 2490,
       image: "/img/5c1b6924-fb18-4442-8199-8f9ac5baff71.jpg",
       category: "Свитера",
-      discount: 20
+      discount: 20,
+      description: "Мягкий вязаный свитер из гипоаллергенной пряжи. Идеально сидит, не сковывает движения. Согреет в холодную погоду и придаст стильный вид вашему питомцу."
     },
     {
       id: 2,
       name: "Худи 'Модник'",
       price: 3290,
       image: "/img/a3e45b61-e457-4b83-a717-f812fb32c939.jpg",
-      category: "Толстовки"
+      category: "Толстовки",
+      description: "Стильное худи с капюшоном из премиального хлопка. Удобная посадка, яркий дизайн. Подходит для прогулок в прохладную погоду."
     },
     {
       id: 3,
@@ -42,7 +46,8 @@ const Index = () => {
       price: 1990,
       image: "/img/5a9ede5d-37c0-4e85-883a-7b44d8a5f999.jpg",
       category: "Верхняя одежда",
-      discount: 15
+      discount: 15,
+      description: "Водонепроницаемый дождевик с светоотражающими элементами. Легко стирается, быстро сохнет. Защитит от дождя и грязи на прогулках."
     },
     {
       id: 4,
@@ -50,14 +55,16 @@ const Index = () => {
       price: 690,
       image: "/img/0be561c0-7ec6-4062-a466-48d1080ae94f.jpg",
       category: "Аксессуары",
-      discount: 10
+      discount: 10,
+      description: "Противоскользящие носочки для защиты лапок. Комфортная посадка, дышащий материал. Сохранят чистоту лапок и пол в доме."
     },
     {
       id: 5,
       name: "Шапочка 'Ушки'",
       price: 1290,
       image: "/img/3045a0d6-62fa-4fc7-82b8-9626d2b80e7b.jpg",
-      category: "Головные уборы"
+      category: "Головные уборы",
+      description: "Теплая шапочка с отверстиями для ушек. Мягкая трикотажная вязка, надежная фиксация. Защитит от холода и ветра в морозную погоду."
     },
     {
       id: 6,
@@ -65,7 +72,8 @@ const Index = () => {
       price: 3990,
       image: "/img/9e597da5-01c9-4323-94d5-5c9d238c29f8.jpg",
       category: "Карнавальная одежда",
-      discount: 25
+      discount: 25,
+      description: "Карнавальный костюм супергероя с накидкой. Яркие детали, комфортная посадка. Идеален для праздников и фотосессий."
     }
   ];
 
@@ -288,7 +296,11 @@ const Index = () => {
 
           <div className="grid md:grid-cols-3 gap-8">
             {products.map((product) => (
-              <Card key={product.id} className="relative overflow-hidden hover:shadow-xl transition-all group">
+              <Card 
+                key={product.id} 
+                className="relative overflow-hidden hover:shadow-xl transition-all group cursor-pointer"
+                onClick={() => setSelectedProduct(product)}
+              >
                 <div className="decorative-corner decorative-corner-tl"></div>
                 <div className="decorative-corner decorative-corner-br"></div>
                 {product.discount && (
@@ -307,6 +319,7 @@ const Index = () => {
                   <div className="p-6 space-y-4">
                     <Badge variant="outline">{product.category}</Badge>
                     <h3 className="text-2xl font-bold">{product.name}</h3>
+                    <p className="text-sm text-muted-foreground line-clamp-2">{product.description}</p>
                     <div className="flex items-center justify-between">
                       <div>
                         {product.discount ? (
@@ -322,7 +335,12 @@ const Index = () => {
                           <span className="text-2xl font-bold text-primary">{product.price} ₽</span>
                         )}
                       </div>
-                      <Button onClick={() => addToCart(product)}>
+                      <Button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          addToCart(product);
+                        }}
+                      >
                         <Icon name="ShoppingCart" size={20} />
                       </Button>
                     </div>
@@ -620,6 +638,94 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      <Sheet open={!!selectedProduct} onOpenChange={(open) => !open && setSelectedProduct(null)}>
+        <SheetContent className="w-full sm:max-w-2xl overflow-y-auto">
+          {selectedProduct && (
+            <>
+              <SheetHeader>
+                <SheetTitle className="text-3xl font-bold">{selectedProduct.name}</SheetTitle>
+              </SheetHeader>
+              <div className="mt-6 space-y-6">
+                <div className="relative aspect-square overflow-hidden rounded-2xl">
+                  <img
+                    src={selectedProduct.image}
+                    alt={selectedProduct.name}
+                    className="w-full h-full object-cover"
+                  />
+                  {selectedProduct.discount && (
+                    <Badge className="absolute top-4 right-4 bg-destructive text-destructive-foreground text-lg px-4 py-2">
+                      -{selectedProduct.discount}%
+                    </Badge>
+                  )}
+                </div>
+                
+                <div className="space-y-4">
+                  <Badge variant="outline" className="text-lg px-4 py-2">
+                    {selectedProduct.category}
+                  </Badge>
+                  
+                  <div className="flex items-center gap-4">
+                    {selectedProduct.discount ? (
+                      <>
+                        <span className="text-4xl font-bold text-primary">
+                          {selectedProduct.price - (selectedProduct.price * selectedProduct.discount) / 100} ₽
+                        </span>
+                        <span className="text-2xl line-through text-muted-foreground">
+                          {selectedProduct.price} ₽
+                        </span>
+                      </>
+                    ) : (
+                      <span className="text-4xl font-bold text-primary">{selectedProduct.price} ₽</span>
+                    )}
+                  </div>
+
+                  <div className="pt-4 border-t">
+                    <h4 className="text-xl font-bold mb-3">Описание</h4>
+                    <p className="text-lg leading-relaxed text-muted-foreground">
+                      {selectedProduct.description}
+                    </p>
+                  </div>
+
+                  <div className="pt-4">
+                    <h4 className="text-xl font-bold mb-3">Особенности</h4>
+                    <ul className="space-y-2">
+                      <li className="flex items-center gap-2">
+                        <Icon name="Check" size={20} className="text-primary" />
+                        <span>Гипоаллергенные материалы</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Icon name="Check" size={20} className="text-primary" />
+                        <span>Легко стирается</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Icon name="Check" size={20} className="text-primary" />
+                        <span>Комфортная посадка</span>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <Icon name="Check" size={20} className="text-primary" />
+                        <span>Долговечность</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <Button 
+                    size="lg" 
+                    className="w-full text-lg"
+                    onClick={() => {
+                      addToCart(selectedProduct);
+                      setSelectedProduct(null);
+                    }}
+                  >
+                    <Icon name="ShoppingCart" size={24} className="mr-2" />
+                    Добавить в корзину
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
+        </SheetContent>
+      </Sheet>
     </div>
   );
 };
