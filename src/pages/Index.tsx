@@ -132,7 +132,12 @@ const Index = () => {
       <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-3xl md:text-4xl font-bold text-primary">🐾 Животный ритм</h1>
+            <div>
+              <h1 className="text-3xl md:text-4xl font-bold text-primary">🐾 Животный ритм</h1>
+              <p className="text-sm font-bold mt-1" style={{ fontFamily: '"Caveat", cursive' }}>
+                Основательница проекта: Симакова София 9 «Д»
+              </p>
+            </div>
             <div className="hidden md:flex gap-6">
               {[
                 { id: "home", label: "Главная" },
@@ -253,10 +258,6 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <p className="text-lg font-bold" style={{ fontFamily: '"Caveat", cursive' }}>
-                Основательница проекта:<br />
-                Симакова София 9 «Д»
-              </p>
               <Badge className="text-lg px-4 py-2 bg-accent text-accent-foreground">
                 🎉 Новая коллекция осень 2025
               </Badge>
