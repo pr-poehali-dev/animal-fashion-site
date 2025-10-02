@@ -134,7 +134,7 @@ const Index = () => {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl md:text-4xl font-bold text-primary">🐾 Животный ритм</h1>
-              <div className="text-2xl font-bold mt-1" style={{ fontFamily: '"Caveat", cursive' }}>
+              <div className="text-xl font-bold mt-1" style={{ fontFamily: '"Caveat", cursive' }}>
                 <div className="underline">Основательница проекта:</div>
                 <div className="mt-1">Симакова София 9 «Д»</div>
               </div>
