@@ -283,7 +283,7 @@ const Index = () => {
                   <Icon name="Truck" size={40} className="text-primary" />
                   <h3 className="text-2xl font-bold">По России</h3>
                   <p className="text-muted-foreground">
-                    Доставка СДЭК, Boxberry и Почта России. Срок доставки 3-7 дней.
+                    Доставка СДЭК и Почта России. Срок доставки 3-7 дней.
                   </p>
                   <p className="font-semibold">Бесплатно от 3000 ₽</p>
                 </CardContent>
