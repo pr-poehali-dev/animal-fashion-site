@@ -30,6 +30,29 @@ const Index = () => {
       image: "/img/5a9ede5d-37c0-4e85-883a-7b44d8a5f999.jpg",
       category: "Верхняя одежда",
       discount: 15
+    },
+    {
+      id: 4,
+      name: "Носочки 'Лапка'",
+      price: 690,
+      image: "/img/0be561c0-7ec6-4062-a466-48d1080ae94f.jpg",
+      category: "Аксессуары",
+      discount: 10
+    },
+    {
+      id: 5,
+      name: "Шапочка 'Ушки'",
+      price: 1290,
+      image: "/img/3045a0d6-62fa-4fc7-82b8-9626d2b80e7b.jpg",
+      category: "Головные уборы"
+    },
+    {
+      id: 6,
+      name: "Костюм 'Супергерой'",
+      price: 3990,
+      image: "/img/9e597da5-01c9-4323-94d5-5c9d238c29f8.jpg",
+      category: "Карнавальная одежда",
+      discount: 25
     }
   ];
 
