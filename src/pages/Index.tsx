@@ -21,6 +21,12 @@ const Index = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null);
+  const [reviewReactions, setReviewReactions] = useState<{[key: number]: {like: number, heart: number, fire: number}}>({
+    0: {like: 12, heart: 8, fire: 5},
+    1: {like: 15, heart: 10, fire: 7},
+    2: {like: 20, heart: 15, fire: 9},
+    3: {like: 18, heart: 12, fire: 6}
+  });
 
   const products = [
     {
@@ -102,6 +108,17 @@ const Index = () => {
   const removeFromCart = (productId: number) => {
     setCart(cart.filter(item => item.id !== productId));
     toast.info('Товар удалён из корзины');
+  };
+
+  const addReaction = (reviewIndex: number, reactionType: 'like' | 'heart' | 'fire') => {
+    setReviewReactions(prev => ({
+      ...prev,
+      [reviewIndex]: {
+        ...prev[reviewIndex],
+        [reactionType]: prev[reviewIndex][reactionType] + 1
+      }
+    }));
+    toast.success('Реакция добавлена!');
   };
 
   const updateQuantity = (productId: number, newQuantity: number) => {
@@ -551,10 +568,36 @@ const Index = () => {
                     <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
                       <Icon name="User" size={24} className="text-primary" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <p className="font-bold">{review.name}</p>
                       <p className="text-sm text-muted-foreground">🐾 {review.pet}</p>
                     </div>
+                  </div>
+                  <div className="flex gap-2 mt-4 pt-4 border-t">
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="flex items-center gap-1"
+                      onClick={() => addReaction(index, 'like')}
+                    >
+                      👍 {reviewReactions[index]?.like || 0}
+                    </Button>
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="flex items-center gap-1"
+                      onClick={() => addReaction(index, 'heart')}
+                    >
+                      ❤️ {reviewReactions[index]?.heart || 0}
+                    </Button>
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="flex items-center gap-1"
+                      onClick={() => addReaction(index, 'fire')}
+                    >
+                      🔥 {reviewReactions[index]?.fire || 0}
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
